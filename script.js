@@ -68,13 +68,37 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        const ul = document.createElement('ul');
+        // No need for a separate 'ul' element, coursesDisplayDiv itself can be the flex container or grid
         courses.forEach(course => {
-            const li = document.createElement('li');
-            li.textContent = `Course: ${course.name}, Credits: ${course.credits}, Grade: ${course.grade}`;
-            ul.appendChild(li);
+            const courseItemDiv = document.createElement('div');
+            courseItemDiv.className = 'flex flex-col sm:flex-row justify-between items-start sm:items-center p-4 mb-3 bg-gray-50 border border-gray-200 rounded-lg shadow-sm';
+
+            // Course Name
+            const courseNameEl = document.createElement('span');
+            courseNameEl.textContent = course.name;
+            courseNameEl.className = 'text-lg font-semibold text-blue-600 mb-1 sm:mb-0'; // Added mb-1 for spacing in col layout
+
+            // Credits
+            const courseCreditsEl = document.createElement('span');
+            courseCreditsEl.textContent = `Credits: ${course.credits}`;
+            courseCreditsEl.className = 'text-sm text-gray-700 sm:ml-4 mb-1 sm:mb-0'; // Added sm:ml-4 for spacing and mb-1
+
+            // Grade
+            const courseGradeEl = document.createElement('span');
+            courseGradeEl.textContent = `Grade: ${course.grade}`;
+            courseGradeEl.className = 'text-sm text-gray-700 sm:ml-4'; // Added sm:ml-4 for spacing
+
+            // For sm:flex-row, we might want a container for credits and grade to keep them grouped
+            const detailsDiv = document.createElement('div');
+            detailsDiv.className = 'flex flex-col sm:flex-row sm:items-center mt-2 sm:mt-0'; // Group credits and grade
+            detailsDiv.appendChild(courseCreditsEl);
+            detailsDiv.appendChild(courseGradeEl);
+
+            courseItemDiv.appendChild(courseNameEl);
+            courseItemDiv.appendChild(detailsDiv);
+            
+            coursesDisplayDiv.appendChild(courseItemDiv);
         });
-        coursesDisplayDiv.appendChild(ul);
     }
 
     function clearInputFields() {
