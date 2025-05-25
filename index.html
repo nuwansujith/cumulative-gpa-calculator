@@ -7,6 +7,15 @@
     <meta name="description" content="Free and easy-to-use online Cumulative GPA (CGPA) calculator. Enter your course names, credit hours, and grades to quickly determine your grade point average.">
     <meta name="keywords" content="CGPA calculator, GPA calculator, cumulative GPA, college GPA, university GPA, grade calculator, academic performance">
     <meta name="author" content="StudentTools Calculator">
+    <script>
+      tailwind.config = {
+        content: ["./index.html", "./script.js"],
+        theme: {
+          extend: {}
+        },
+        plugins: []
+      }
+    </script>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100 text-gray-800 font-sans p-4 sm:p-8">
@@ -81,8 +90,8 @@
         <p>© 2023 Your Name/University</p>
     </footer>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/3.0.1/jspdf.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/5.0.2/jspdf.plugin.autotable.min.js"></script>
-    <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/3.0.1/jspdf.umd.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/5.0.2/jspdf.plugin.autotable.min.js" defer></script>
+    <script src="script.min.js" defer></script>
 </body>
 </html>

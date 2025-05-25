@@ -1,0 +1,25 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:css": "./node_modules/.bin/tailwindcss -i ./src/input.css -o ./dist/style.css --minify",
+    "minify:js": "terser script.js -o script.min.js -c -m --source-map \"filename='script.min.js.map'\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nuwansujith/cumulative-gpa-calculator.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nuwansujith/cumulative-gpa-calculator/issues"
+  },
+  "homepage": "https://github.com/nuwansujith/cumulative-gpa-calculator#readme",
+  "devDependencies": {
+    "tailwindcss": "^4.1.7"
+  },
+  "description": ""
+}
