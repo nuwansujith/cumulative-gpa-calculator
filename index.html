@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cumulative GPA Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Cumulative GPA Calculator</h1>
+    </header>
+
+    <main>
+        <form id="course-form">
+            <div>
+                <label for="course-name">Course Name:</label>
+                <input type="text" id="course-name" required>
+            </div>
+            <div>
+                <label for="credit-hours">Credit Hours:</label>
+                <input type="number" id="credit-hours" min="0.5" step="0.5" required>
+            </div>
+            <div>
+                <label for="grade">Grade:</label>
+                <select id="grade" required>
+                    <option value="4.0">A</option>
+                    <option value="3.7">A-</option>
+                    <option value="3.3">B+</option>
+                    <option value="3.0">B</option>
+                    <option value="2.7">B-</option>
+                    <option value="2.3">C+</option>
+                    <option value="2.0">C</option>
+                    <option value="1.7">C-</option>
+                    <option value="1.3">D+</option>
+                    <option value="1.0">D</option>
+                    <option value="0.0">F</option>
+                </select>
+            </div>
+            <button type="button" id="add-course-btn">Add Course</button>
+        </form>
+
+        <section id="course-list-section">
+            <h2>Courses Added</h2>
+            <div id="courses-display">
+                <!-- Courses will be displayed here -->
+            </div>
+        </section>
+
+        <section id="cgpa-result-section">
+            <button type="button" id="calculate-cgpa-btn">Calculate CGPA</button>
+            <div id="cgpa-result">
+                <!-- CGPA result will be displayed here -->
+            </div>
+        </section>
+
+        <section id="test-case-section" style="margin-top: 30px; padding: 15px; border: 1px dashed #ccc;">
+            <h2>Test Case / Sanity Check</h2>
+            <p><strong>Instructions:</strong> Manually add the following courses using the form above and then click "Calculate CGPA".</p>
+            <ul>
+              <li>Course: Intro to CS, Credits: 3, Grade: A</li>
+              <li>Course: Calculus I, Credits: 4, Grade: B+</li>
+              <li>Course: Physics Lab, Credits: 1, Grade: A-</li>
+              <li>Course: History 101, Credits: 3, Grade: B</li>
+            </ul>
+            <p><strong>Expected CGPA:</strong> Approximately 3.45</p>
+            <p><small><em>(Calculated as: (3*4.0 + 4*3.3 + 1*3.7 + 3*3.0) / (3+4+1+3) = 37.9 / 11 = 3.44545...)</em></small></p>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2023 Your Name/University</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

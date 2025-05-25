@@ -1,0 +1,166 @@
+/* 1. General Body Styling */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh; /* Ensure footer is at bottom if content is short */
+}
+
+/* 2. Header */
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 1rem 0;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+header h1 {
+    margin: 0; /* Remove default h1 margin */
+}
+
+/* 3. Main Content Area */
+main {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 700px;
+}
+
+/* 4. Form Elements */
+#course-form div { /* Target the divs wrapping label and input */
+    margin-bottom: 15px;
+}
+
+#course-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+#course-form input[type="text"],
+#course-form input[type="number"],
+#course-form select {
+    width: calc(100% - 22px); /* input width - padding*2 - border*2 */
+    padding: 10px;
+    /* margin-bottom is on the parent div now */
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* Buttons */
+button { /* General button styling, can be overridden */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-right: 10px; /* For spacing if buttons are on the same line */
+}
+
+#add-course-btn {
+    background-color: #28a745; /* Green */
+}
+
+#calculate-cgpa-btn {
+    background-color: #007bff; /* Blue */
+}
+
+button:hover {
+    opacity: 0.9; /* Slightly darken by reducing opacity */
+}
+
+/* 5. Course List */
+#course-list-section {
+    margin-top: 20px;
+}
+
+#courses-display ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#courses-display li {
+    background-color: #f9f9f9;
+    border: 1px solid #eee;
+    padding: 10px;
+    margin-bottom: 8px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap; /* Allow wrapping on small screens */
+}
+
+/* 6. CGPA Result */
+#cgpa-result-section {
+    margin-top: 20px;
+    text-align: center;
+}
+
+#cgpa-result {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #333; /* Or a success color like #28a745 */
+    padding: 10px;
+    background-color: #e9ecef;
+    border-radius: 4px;
+    margin-top: 10px;
+    min-height: 1.5em; /* Prevent layout shift when text appears */
+}
+
+/* 7. Footer */
+footer {
+    text-align: center;
+    margin-top: 30px;
+    padding: 10px;
+    font-size: 0.9em;
+    color: #666;
+    width: 100%;
+}
+
+/* 8. Basic Responsiveness */
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+
+    main {
+        padding: 15px;
+    }
+
+    #course-form input[type="text"],
+    #course-form input[type="number"],
+    #course-form select {
+        width: 100%; /* Full width on smaller screens */
+    }
+
+    button {
+        width: 100%; /* Make buttons full width */
+        margin-right: 0; /* Remove right margin */
+        margin-bottom: 10px; /* Add bottom margin for stacked buttons */
+    }
+
+    #add-course-btn, #calculate-cgpa-btn {
+        display: block; /* Stack buttons */
+    }
+    
+    #courses-display li {
+        flex-direction: column; /* Stack course details */
+        align-items: flex-start;
+    }
+}
