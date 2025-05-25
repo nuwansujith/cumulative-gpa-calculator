@@ -24,6 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const calculateCgpaBtn = document.getElementById('calculate-cgpa-btn');
     const cgpaResultDiv = document.getElementById('cgpa-result');
+    const generateReportBtn = document.getElementById('generate-report-btn');
 
     function addCourse() {
         const courseName = courseNameInput.value.trim();
@@ -127,4 +128,47 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Initial render for courses display area
     renderCourses();
+
+    function generateReport() {
+        const cgpaText = cgpaResultDiv.textContent || "";
+
+        if (courses.length === 0) {
+            alert('Please add courses first before generating a report.');
+            return;
+        }
+        // Check if CGPA has been calculated (i.e., cgpaText is not the initial message or empty)
+        if (!cgpaText.toLowerCase().includes('your cgpa is:')) {
+             alert('Please calculate CGPA first before generating a report.');
+            return;
+        }
+
+        let reportString = "GPA Report\n";
+        reportString += "====================\n";
+        const now = new Date();
+        reportString += "Generated on: " + now.toLocaleString() + "\n\n";
+
+        reportString += "Courses Taken:\n";
+        courses.forEach(course => {
+            reportString += `- ${course.name}, Credits: ${course.credits}, Grade: ${course.grade}\n`;
+        });
+        reportString += "\n";
+
+        reportString += cgpaText + "\n"; // This includes "Your CGPA is: X.XX"
+
+        const blob = new Blob([reportString], { type: 'text/plain;charset=utf-8' });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = 'gpa_report.txt';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(link.href);
+    }
+
+    // Event Listener for Generate Report Button
+    if (generateReportBtn) {
+        generateReportBtn.addEventListener('click', generateReport);
+    } else {
+        console.error("Generate Report button not found");
+    }
 });

@@ -81,6 +81,16 @@ button { /* General button styling, can be overridden */
     background-color: #007bff; /* Blue */
 }
 
+#generate-report-btn {
+    background-color: #6c757d; /* Bootstrap secondary-like gray */
+    /* margin-top: 10px; will inherit from general button style */
+}
+
+#generate-report-btn:hover {
+    background-color: #5a6268; /* Darken on hover */
+    opacity: 1; /* Override general button hover if it uses opacity */
+}
+
 button:hover {
     opacity: 0.9; /* Slightly darken by reducing opacity */
 }
@@ -155,7 +165,7 @@ footer {
         margin-bottom: 10px; /* Add bottom margin for stacked buttons */
     }
 
-    #add-course-btn, #calculate-cgpa-btn {
+    #add-course-btn, #calculate-cgpa-btn, #generate-report-btn {
         display: block; /* Stack buttons */
     }
     
