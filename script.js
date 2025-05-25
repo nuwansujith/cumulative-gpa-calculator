@@ -130,39 +130,72 @@ document.addEventListener('DOMContentLoaded', () => {
     renderCourses();
 
     function generateReport() {
-        const cgpaText = cgpaResultDiv.textContent || "";
+        const currentCgpaText = cgpaResultDiv.textContent || ""; // Renamed to avoid conflict with jsPDF text method
 
         if (courses.length === 0) {
-            alert('Please add courses first before generating a report.');
+            alert('Please add courses first before generating a PDF report.');
             return;
         }
-        // Check if CGPA has been calculated (i.e., cgpaText is not the initial message or empty)
-        if (!cgpaText.toLowerCase().includes('your cgpa is:')) {
-             alert('Please calculate CGPA first before generating a report.');
+        if (!currentCgpaText.toLowerCase().includes('your cgpa is:')) {
+            alert('Please calculate CGPA first before generating a PDF report.');
             return;
         }
 
-        let reportString = "GPA Report\n";
-        reportString += "====================\n";
-        const now = new Date();
-        reportString += "Generated on: " + now.toLocaleString() + "\n\n";
+        // Ensure jsPDF and autoTable are loaded
+        if (typeof window.jspdf === 'undefined' || typeof window.jspdf.jsPDF === 'undefined') {
+            alert('Error: jsPDF library not loaded correctly.');
+            console.error('jsPDF not loaded');
+            return;
+        }
+        // jspdf-autotable typically extends the jsPDF instance,
+        // so we check for its availability on a new jsPDF instance's prototype.
+        const testDoc = new window.jspdf.jsPDF();
+        if (typeof testDoc.autoTable !== 'function') {
+             alert('Error: jsPDF-AutoTable plugin not loaded correctly.');
+             console.error('jsPDF-AutoTable not loaded');
+             return;
+        }
+        
+        const doc = new window.jspdf.jsPDF();
 
-        reportString += "Courses Taken:\n";
+        // Add Title
+        doc.setFontSize(20);
+        doc.text("GPA Report", 10, 20);
+
+        // Add Timestamp
+        doc.setFontSize(12);
+        doc.text("Generated on: " + new Date().toLocaleString(), 10, 30);
+
+        // Prepare Table Data
+        const tableColumn = ["Course Name", "Credits", "Grade"];
+        const tableRows = [];
         courses.forEach(course => {
-            reportString += `- ${course.name}, Credits: ${course.credits}, Grade: ${course.grade}\n`;
+            const courseData = [
+                course.name,
+                course.credits.toString(),
+                course.grade
+            ];
+            tableRows.push(courseData);
         });
-        reportString += "\n";
 
-        reportString += cgpaText + "\n"; // This includes "Your CGPA is: X.XX"
+        // Add Table using jsPDF-AutoTable
+        doc.autoTable({
+            head: [tableColumn],
+            body: tableRows,
+            startY: 40, // Start table below the timestamp
+            theme: 'striped', // Optional: Apply a theme
+            styles: { fontSize: 10 },
+            headStyles: { fillColor: [22, 160, 133] }, // Example header color
+        });
 
-        const blob = new Blob([reportString], { type: 'text/plain;charset=utf-8' });
-        const link = document.createElement('a');
-        link.href = URL.createObjectURL(blob);
-        link.download = 'gpa_report.txt';
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-        URL.revokeObjectURL(link.href);
+        // Add CGPA after the table
+        // Ensure lastAutoTable property exists and has finalY
+        const lastY = doc.lastAutoTable && doc.lastAutoTable.finalY ? doc.lastAutoTable.finalY : 40; // Fallback Y
+        doc.setFontSize(12);
+        doc.text(currentCgpaText, 10, lastY + 10);
+
+        // Trigger PDF Download
+        doc.save('gpa_report.pdf');
     }
 
     // Event Listener for Generate Report Button
