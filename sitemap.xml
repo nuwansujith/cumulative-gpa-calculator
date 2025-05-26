@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <url>
+    <loc>https://www.gpacalculator.xyz/</loc>
+    <lastmod>2025-05-25</lastmod>
+    <priority>1.00</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.gpacalculator.xyz/about</loc>
+    <lastmod>2025-05-25</lastmod>
+    <priority>0.80</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.gpacalculator.xyz/contact</loc>
+    <lastmod>2025-05-25</lastmod>
+    <priority>0.64</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.gpacalculator.xyz/privacy-policy</loc>
+    <lastmod>2025-05-25</lastmod>
+    <priority>0.50</priority>
+    <changefreq>yearly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.gpacalculator.xyz/terms-of-service</loc>
+    <lastmod>2025-05-25</lastmod>
+    <priority>0.50</priority>
+    <changefreq>yearly</changefreq>
+  </url>
+
+</urlset>
